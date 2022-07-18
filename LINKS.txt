@@ -1,0 +1,5 @@
+https://www.anaconda.com/blog/understanding-conda-and-pip
+https://docs.python.org/es/3/library/tkinter.html
+https://estradawebgroup.com/Post/-Que-es-el-tipo-de-dato-varchar-de-SQL-Server-y-cuando-utilizarlo-/20355
+https://eisi.fia.ues.edu.sv/materialpublico/pdm115/2019/labs/PDM115_guia_lab03_SQLite.pdf
+https://runebook.dev/es/docs/sqlite/datatype3
