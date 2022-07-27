@@ -1,6 +1,3 @@
-import tkinter as tk
-import sqlite3 as sql
-import datetime as dt
 from DatosPaciente.GUI_TKINTER import interfaz
 
 def buscarDNI():
