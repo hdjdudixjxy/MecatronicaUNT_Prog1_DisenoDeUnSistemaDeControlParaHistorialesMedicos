@@ -3,3 +3,14 @@ https://docs.python.org/es/3/library/tkinter.html
 https://estradawebgroup.com/Post/-Que-es-el-tipo-de-dato-varchar-de-SQL-Server-y-cuando-utilizarlo-/20355
 https://eisi.fia.ues.edu.sv/materialpublico/pdm115/2019/labs/PDM115_guia_lab03_SQLite.pdf
 https://runebook.dev/es/docs/sqlite/datatype3
+https://www.pythontutorial.net/tkinter/tkinter-object-oriented-window/
+https://guia-tkinter.readthedocs.io/es/develop/index.html
+https://es.stackoverflow.com/questions/330481/fuentes-disponibles-en-tkinter
+https://docs.python.org/es/3.9/library/tkinter.font.html
+https://www.tcl.tk/man/tcl8.5/TkCmd/colors.html
+http://patriciaemiguel.com/python/2019/08/01/python-tkinter-colores.html
+https://www.sqlite.org/index.html
+https://pypi.org/project/sqlitedao/
+https://anaconda.org/anaconda/sqlite
+https://pypi.org/project/sqlitedao/
+https://python-para-impacientes.blogspot.com/2016/02/variables-de-control-en-tkinter.html
