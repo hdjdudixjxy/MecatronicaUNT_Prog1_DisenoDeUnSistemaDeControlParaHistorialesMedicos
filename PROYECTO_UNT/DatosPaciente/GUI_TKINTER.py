@@ -1,9 +1,6 @@
 import tkinter as tk
 import datetime as dt
 
-def buscarDNI():
-    pass
-
 def interfaz():
     
     aplicacion = tk.Tk()
