@@ -1,14 +1,19 @@
 import tkinter as tk
+from tkinter import ttk
 import datetime as dt
+from EnlaceSQLPy.PacienteDao import Persona, listarCondicion, mostarP
+
 
 def interfaz():
     
     aplicacion = tk.Tk()
     aplicacion.title("HISTORIAS CLINICAS")
-    aplicacion.geometry("1366x768") # resolución por defecto
+    aplicacion.geometry("1366x768+100+20") # resolución por defecto
     aplicacion.iconbitmap("ICONO.ico")
     aplicacion.resizable(width=True, height=True) # ponemos que se pueda agrandar?
     aplicacion.configure(background="lightseagreen")
+    idPersona=None
+
 
     #############################################################
 
@@ -19,7 +24,7 @@ def interfaz():
     ventana1.pack(fill=tk.X)
 
     NomClinica = tk.Label(ventana1,
-        text="CLÍNICA :V",
+        text="MEDICLINIC",
         font=("Verdana", 22, "bold", "underline"),
         background="steelblue"
     )
@@ -59,7 +64,9 @@ def interfaz():
         anchor="w"
     )
 
+    VNombre=tk.StringVar()
     EnNombre=tk.Entry(ventana2_1,
+        textvariable = VNombre,
         font = ("Verdana", 16),
         background = "white",
         relief = tk.SUNKEN,
@@ -77,7 +84,9 @@ def interfaz():
         background = "lightseagreen"
     )
 
+    VBDNI=tk.IntVar()
     EnBDNI_BUSCAR=tk.Entry(ventana2_2,
+        textvariable=VBDNI,
         font = ("Verdana", 16),
         background = "white",
         relief = tk.SUNKEN,
@@ -116,7 +125,9 @@ def interfaz():
         anchor="w"
     )
 
+    VApellido=tk.StringVar() # StringVAR PERMITE ADMINISTRAR DATOS DE LA ENTRADA DE TIPO VARIABLE STRING
     EnApellido=tk.Entry(ventana3_1,
+        textvariable = VApellido,
         font = ("Verdana", 16),
         background = "white",
         relief = tk.SUNKEN,
@@ -177,7 +188,9 @@ def interfaz():
         anchor="w"
     )
 
+    VDNI=tk.IntVar()
     EnDNI_ENTRADA=tk.Entry(ventana4_1,
+        textvariable = VDNI,
         font = ("Verdana", 16),
         background = "white",
         relief = tk.SUNKEN,
@@ -225,7 +238,9 @@ def interfaz():
         anchor="w"
     )
 
+    VEdad=tk.IntVar()
     EnEDAD=tk.Entry(ventana5_1,
+        textvariable = VEdad,
         font = ("Verdana", 16),
         background = "white",
         relief = tk.SUNKEN,
@@ -265,15 +280,16 @@ def interfaz():
 
     ventana6_1.place(relx=0.1)
 
-
-    LbF_NACIMIENTO = tk.Label(ventana6_1,
+    LbF_Nacimiento = tk.Label(ventana6_1,
         text="FECHA DE NACIMIENTO: ",
         font = ("Verdana", 16),
         background = "lightseagreen",
         anchor="w"
     )
 
-    EnF_NACIMIENTO=tk.Entry(ventana6_1,
+    VF_Nacimiento=tk.StringVar()
+    EnF_Nacimiento=tk.Entry(ventana6_1,
+        textvariable = VF_Nacimiento,
         font = ("Verdana", 16),
         background = "white",
         relief = tk.SUNKEN,
@@ -281,9 +297,9 @@ def interfaz():
         width=30
     )
 
-    EnF_NACIMIENTO.pack(side=tk.RIGHT,padx=6, pady=7)
+    EnF_Nacimiento.pack(side=tk.RIGHT,padx=6, pady=7)
 
-    LbF_NACIMIENTO.pack(side=tk.RIGHT, padx=10, pady=4)
+    LbF_Nacimiento.pack(side=tk.RIGHT, padx=10, pady=4)
 
     BtEDAD = tk.Label(ventana6_2,
         text=".",
@@ -314,14 +330,16 @@ def interfaz():
     ventana7_1.place(relx=0.1)
 
 
-    LbN_TELEFONICO = tk.Label(ventana7_1,
+    LbN_Telefonico = tk.Label(ventana7_1,
         text="NÚMERO TELEFÓNICO: ",
         font = ("Verdana", 16),
         background = "lightseagreen",
         anchor="w"
     )
 
-    EnN_TELEFONICO=tk.Entry(ventana7_1,
+    VN_Telefonico=tk.IntVar()
+    EnN_Telefonico=tk.Entry(ventana7_1,
+        textvariable = VN_Telefonico,
         font = ("Verdana", 16),
         background = "white",
         relief = tk.SUNKEN,
@@ -329,9 +347,9 @@ def interfaz():
         width=30
     )
 
-    EnN_TELEFONICO.pack(side=tk.RIGHT,padx=20, pady=7)
+    EnN_Telefonico.pack(side=tk.RIGHT,padx=20, pady=7)
 
-    LbN_TELEFONICO.pack(side=tk.RIGHT, padx=10, pady=4)
+    LbN_Telefonico.pack(side=tk.RIGHT, padx=10, pady=4)
 
     BtEDAD = tk.Label(ventana7_2,
         text=".",
@@ -361,14 +379,16 @@ def interfaz():
 
     ventana8_1.place(relx=0.1)
 
-    LbC_ELECTRONICO = tk.Label(ventana8_1,
+    LbC_Electronico = tk.Label(ventana8_1,
         text="CORREO ELECTRÓNICO: ",
         font = ("Verdana", 16),
         background = "lightseagreen",
         anchor="w"
     )
 
-    EnC_ELECTRONICO=tk.Entry(ventana8_1,
+    VC_Electronico=tk.StringVar()
+    EnC_Electronico=tk.Entry(ventana8_1,
+        textvariable = VC_Electronico,
         font = ("Verdana", 16),
         background = "white",
         relief = tk.SUNKEN,
@@ -376,9 +396,9 @@ def interfaz():
         width=30
     )
 
-    EnC_ELECTRONICO.pack(side=tk.RIGHT,padx=4, pady=7)
+    EnC_Electronico.pack(side=tk.RIGHT,padx=4, pady=7)
 
-    LbC_ELECTRONICO.pack(side=tk.RIGHT, padx=10, pady=4)
+    LbC_Electronico.pack(side=tk.RIGHT, padx=10, pady=4)
 
     BtEDAD = tk.Label(ventana8_2,
         text=".",
@@ -389,9 +409,132 @@ def interfaz():
 
     BtEDAD.pack(side=tk.RIGHT, padx=10, pady=10)
 
-    ######################################################33
+    ######################################################
+
+    ventana9=tk.Frame(aplicacion,
+        background="lightseagreen"
+        )
+
+    ventana9.pack(fill=tk.X)
+
+    BtNuevoPaciente = tk.Button(ventana9,
+        text="NUEVO",
+        font = ("Verdana", 16),
+        background = "khaki1",
+        relief = tk.GROOVE,
+        border=5,
+        width=15
+    )
+
+    def guardarPaciente():
+        persona=Persona(VNombre.get(), VApellido.get(), VDNI.get(), VEdad.get(), VF_Nacimiento.get(), VN_Telefonico.get() , VC_Electronico.get())
+        if idPersona==None:
+            guardarPaciente(persona)
+
+
+    BtGuardarPaciente = tk.Button(ventana9,
+        text="GUARDAR",
+        font = ("Verdana", 16),
+        background = "khaki1",
+        relief = tk.GROOVE,
+        border=5,
+        width=15,
+        command=guardarPaciente
+    )
+
+    BtCancelarOp = tk.Button(ventana9,
+        text="CANCELAR OPERACIÓN",
+        font = ("Verdana", 16),
+        background = "khaki1",
+        relief = tk.GROOVE,
+        border=5,
+        width=20
+    )
+
+    BtGuardarPaciente.pack(side=tk.LEFT, padx=15, pady=5)
+
+    BtNuevoPaciente.pack(side=tk.LEFT, padx=15, pady=5)
+
+    BtCancelarOp.pack(side=tk.LEFT, padx=15, pady=5)
+
+    ######################### FUNCIONES DE ENTRYS ##################################
+
+##############################################################3
+    #################### TABLA PACIENTES ###################
+
+    def tablaPaciente(self,where=""):
+
+        if len(where) >0:
+            self.listaPersona = listarCondicion(where)
+        else:
+            self.listaPersona = mostarP()
+        self.tabla = ttk.Treeview(self, column=("Nombre", "Apellidos", "DNI", "Edad", "F_Nacimiento", "N_Telefonico", "Correo"))
+        self.tabla.pack()
+        self.scroll = ttk.Scrollbar(self, orient="vertical", command=self.tabla.yview) 
+    #############################################################
+
     aplicacion.mainloop()
 
+
+
+
+
+
+
+############ ERROR #########################
+
+def error():
+
+    AppError = tk.Tk()
+    AppError.title("¡Vaya!")
+    AppError.geometry("350x250+600+200") # resolución por defecto
+    AppError.iconbitmap("error2.ico")
+    AppError.resizable(width=False, height=False) # ponemos que se pueda agrandar?
+    AppError.configure(background="steelblue1")
+
+###################################################
+
+    LbError = tk.Label(AppError,
+        text="HA OCURRIDO UN ERROR",
+        font=("Arial", 18, "bold"),
+        foreground="red2",
+        background="steelblue1"
+    )
+
+    LbError.place(x=25, y=60)
+
+############################################################
+
+    LbError2 = tk.Label(AppError,
+        text="Vuelva a ejecutar la aplicación",
+        font=("Arial", 12),
+        foreground="gray30",
+        background="steelblue1"
+    )
+
+    LbError2.place(x=74, y=97)
+
+###############################################################
+    def BucleError():
+        while True:
+            AppError.quit # PREGUNTAR AL PROFESOR
+            interfaz()
+            break
+
+    BtError = tk.Button(AppError,
+        text="Reintentar",
+        font=("Arial", 10, "bold"),
+        relief=tk.FLAT,
+        border=2,
+        background="tomato3",
+        command=BucleError
+        )
+
+    BtError.place(x=135, y=145)
+
+##################################################################
+
+    AppError.mainloop()
 
 
 
