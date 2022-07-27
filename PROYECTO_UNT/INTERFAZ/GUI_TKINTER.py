@@ -459,7 +459,7 @@ def interfaz():
 
     ######################### FUNCIONES DE ENTRYS ##################################
 
-##############################################################3
+    ##############################################################3
     #################### TABLA PACIENTES ###################
 
     def tablaPaciente(self,where=""):
@@ -468,9 +468,9 @@ def interfaz():
             self.listaPersona = listarCondicion(where)
         else:
             self.listaPersona = mostarP()
-        self.tabla = ttk.Treeview(self, column=("Nombre", "Apellidos", "DNI", "Edad", "F_Nacimiento", "N_Telefonico", "Correo"))
-        self.tabla.pack()
-        self.scroll = ttk.Scrollbar(self, orient="vertical", command=self.tabla.yview) 
+            self.tabla = ttk.Treeview(self, column=("Nombre", "Apellidos", "DNI", "Edad", "F_Nacimiento", "N_Telefonico", "Correo"))
+            self.tabla.pack()
+            self.scroll = ttk.Scrollbar(self, orient="vertical", command=self.tabla.yview) 
     #############################################################
 
     aplicacion.mainloop()
