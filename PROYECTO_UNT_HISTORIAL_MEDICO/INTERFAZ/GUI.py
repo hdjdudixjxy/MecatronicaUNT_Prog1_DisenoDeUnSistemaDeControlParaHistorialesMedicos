@@ -1,4 +1,5 @@
-import tkinter as tk
+import tkinter as tk # Importamos la GUI TKINTER
+from CONEXION.PacienteDao import DatosPaciente, guardarDatoPaciente # traemos la clase y las funciones para la persona
 
 ######################### VENTANA DE FONDO ###################
 
@@ -9,7 +10,7 @@ class Frame(tk.Frame): # clase ventana
         self.aplicacion = aplicacion
         self.pack(fill=tk.BOTH, expand=True)
         self.config(bg='lightseagreen')
-        self.idPersona = None # los id, los utilizaremos para ver si una persona está registrada o no
+        self.idPersona = None # los id, los utilizaremos para aplicar condiciones
         self.idPersonaHistoria = None
         self.idHistoriaMedica = None
         self.idHistoriaMedicaEditar = None
@@ -17,7 +18,7 @@ class Frame(tk.Frame): # clase ventana
 
     def camposPaciente(self):
 
-##################### LABELS ##########################
+        ##################### LABELS ##########################
 
         self.lblNombre = tk.Label(self, text='NOMBRE COMPLETO: ')
         self.lblNombre.config(font=('verdana',15,'bold'), bg='lightseagreen', anchor = "w") # Preguntar como hacerlo hacia la izquierda con el metodo grid
@@ -31,13 +32,13 @@ class Frame(tk.Frame): # clase ventana
         self.lblDni.config(font=('verdana',15,'bold'), bg='lightseagreen', anchor = "w")
         self.lblDni.grid(column=0,row=2, padx=10, pady=5)
 
-        self.lblEdad = tk.Label(self, text='EDAD: ')
-        self.lblEdad.config(font=('verdana',15,'bold'), bg='lightseagreen', anchor = "w")
-        self.lblEdad.grid(column=0,row=3, pady=5)
-
         self.lblFechNacimiento = tk.Label(self, text='FECHA DE NACIMIENTO: ')
         self.lblFechNacimiento.config(font=('verdana',15,'bold'), bg='lightseagreen', anchor = "w")
-        self.lblFechNacimiento.grid(column=0,row=4, pady=5)
+        self.lblFechNacimiento.grid(column=0,row=3, pady=5)
+
+        self.lblEdad = tk.Label(self, text='EDAD: ')
+        self.lblEdad.config(font=('verdana',15,'bold'), bg='lightseagreen', anchor = "w")
+        self.lblEdad.grid(column=0,row=4, pady=5)
 
         self.lblTelefono = tk.Label(self, text='TELÉFONO: ')
         self.lblTelefono.config(font=('verdana',15,'bold'), bg='lightseagreen', anchor = "w")
@@ -47,7 +48,8 @@ class Frame(tk.Frame): # clase ventana
         self.lblCorreo.config(font=('verdana',15,'bold'), bg='lightseagreen', anchor = "w")
         self.lblCorreo.grid(column=0,row=6, pady=5)
 
-################## ENTRYS ###############################33
+        ################## ENTRYS ###############################
+
         self.svNombre = tk.StringVar()
         self.entryNombre = tk.Entry(self, textvariable=self.svNombre)
         self.entryNombre.config(width=50, font=('ARIAL',15))
@@ -63,15 +65,15 @@ class Frame(tk.Frame): # clase ventana
         self.entryDni.config(width=50, font=('ARIAL',15))
         self.entryDni.grid(column=1, row=2, padx=10, pady=5, columnspan=2)
 
-        self.svEdad = tk.StringVar()
-        self.entryEdad = tk.Entry(self, textvariable=self.svEdad)
-        self.entryEdad.config(width=50, font=('ARIAL',15))
-        self.entryEdad.grid(column=1, row=3, padx=10, pady=5, columnspan=2)
-
         self.svFecNacimiento = tk.StringVar()
         self.entryFecNacimiento = tk.Entry(self, textvariable=self.svFecNacimiento)
         self.entryFecNacimiento.config(width=50, font=('ARIAL',15))
-        self.entryFecNacimiento.grid(column=1, row=4, padx=10, pady=5, columnspan=2)
+        self.entryFecNacimiento.grid(column=1, row=3, padx=10, pady=5, columnspan=2)
+
+        self.svEdad = tk.StringVar()
+        self.entryEdad = tk.Entry(self, textvariable=self.svEdad)
+        self.entryEdad.config(width=50, font=('ARIAL',15))
+        self.entryEdad.grid(column=1, row=4, padx=10, pady=5, columnspan=2)
 
         self.svTelefono = tk.StringVar()
         self.entryTelefono = tk.Entry(self, textvariable=self.svTelefono)
@@ -83,13 +85,14 @@ class Frame(tk.Frame): # clase ventana
         self.entryCorreo.config(width=50, font=('ARIAL',15))
         self.entryCorreo.grid(column=1, row=6, padx=10, pady=5, columnspan=2)
 
-        #BUTTONS
+        ######################### BUTTONS ####################################
+
         self.btnNuevo = tk.Button(self, text='NUEVO')
         self.btnNuevo.config(width=20, font=('ARIAL',12,'bold'), 
                                 bg='firebrick1', cursor='hand2',activebackground='firebrick3')
         self.btnNuevo.grid(column=0,row=7, padx=10, pady=5)
 
-        self.btnGuardar = tk.Button(self, text='GUARDAR')
+        self.btnGuardar = tk.Button(self, text='GUARDAR', command=self.guardarPaciente)
         self.btnGuardar.config(width=20, font=('ARIAL',12,'bold'), 
                                 bg='sienna1', cursor='hand2',activebackground='sienna3')
         self.btnGuardar.grid(column=1,row=7, padx=10, pady=5)
@@ -98,6 +101,33 @@ class Frame(tk.Frame): # clase ventana
         self.btnCancelar.config(width=20, font=('ARIAL',12,'bold'), 
                                 bg='khaki1', cursor='hand2',activebackground='khaki3')
         self.btnCancelar.grid(column=2,row=7, padx=10, pady=5)
+
+    ################ FUNCIONES QUE VINCULAN LOS OBJETOS ###############################
+
+    def guardarPaciente(self): #
+        persona = DatosPaciente(self.svNombre.get(), self.svApellidos.get(), self.svFecNacimiento.get(),self.svDni.get(), self.svEdad.get(),self.svTelefono.get(), self.svCorreo.get())
+        # el metodo get lee lo que se inserta en los entrys
+        # if self.idPersona == None:
+        guardarDatoPaciente(persona)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
