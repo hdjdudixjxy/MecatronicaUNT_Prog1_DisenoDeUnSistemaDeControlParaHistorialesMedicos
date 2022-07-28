@@ -1,3 +1,4 @@
+from turtle import title
 from CONEXION.conexion import ConexionDB
 from tkinter import messagebox # para mostrar ventanas emergentes
 
@@ -16,6 +17,22 @@ def guardarDatoPaciente(persona): # creamos la función guardarDatoPaciente para
     titulo = "Registrar Paciente"
     mensaje = "Paciente Registrado Exitosamente"
     messagebox.showinfo(titulo, mensaje) # ventana emergente para indicar proceso completado
+
+def eliminarPaciente(idPersona): #creamos la funcion eliminarPaciente para eliminar sus datos
+    conexion = ConexionDB() # hacemos uso de la clase conexionDB para poder eliminar los datos
+    sql = f"""UPDATE Persona SET activo = 0 WHERE idPersona = {idPersona}"""
+    try:
+        conexion.cursor.execute(sql)
+        conexion.cerrarConexion()
+        title = 'Eliminar Paciente'
+        mensaje = 'Paciente eliminado exitosamente'
+        messagebox.showinfo(title, mensaje) # ventana emergente para indicar proceso completado
+    except:
+        title = 'Eliminar Paciente'
+        mensaje = 'Error al eliminar Paciente'
+        messagebox.showwarning(title, mensaje) # ventana emergente para indicar proceso completado    
+
+
 
 
 ################### CLASE DatosPaciente ################################3
