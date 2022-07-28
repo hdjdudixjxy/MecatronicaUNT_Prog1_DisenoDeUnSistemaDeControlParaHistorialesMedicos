@@ -14,3 +14,4 @@ https://pypi.org/project/sqlitedao/
 https://anaconda.org/anaconda/sqlite
 https://pypi.org/project/sqlitedao/
 https://python-para-impacientes.blogspot.com/2016/02/variables-de-control-en-tkinter.html
+https://www.tutorialesprogramacionya.com/sqliteya/detalleconcepto.php?punto=4&codigo=4&inicio=0
