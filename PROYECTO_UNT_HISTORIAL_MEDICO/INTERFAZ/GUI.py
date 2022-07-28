@@ -1,5 +1,6 @@
-import tkinter as tk # Importamos la GUI TKINTER
-from CONEXION.PacienteDao import DatosPaciente, guardarDatoPaciente # traemos la clase y las funciones para la persona
+import tkinter as tk
+from tkinter import messagebox # Importamos la GUI TKINTER
+from CONEXION.PacienteDao import DatosPaciente, guardarDatoPaciente, eliminarPaciente # traemos la clase y las funciones para la persona
 
 ######################### VENTANA DE FONDO ###################
 
@@ -109,6 +110,23 @@ class Frame(tk.Frame): # clase ventana
         # el metodo get lee lo que se inserta en los entrys
         # if self.idPersona == None:
         guardarDatoPaciente(persona)
+
+    def eliminarDatoPaciente(self):
+        try:
+            self.idPersona = self.tabla.item(self.tabla.selection())['text']
+            eliminarPaciente(self.idPersona)
+            self.tablaPaciente()
+            self.idPersona = None
+        except:
+            title = 'Eliminar Paciente'
+            mensaje = 'No se pudo eliminar paciente'
+            messagebox.showinfo(title, mensaje)    
+
+
+
+
+        
+
 
 
 
