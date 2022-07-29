@@ -1,4 +1,3 @@
-from turtle import title
 from CONEXION.conexion import ConexionDB
 from tkinter import messagebox # para mostrar ventanas emergentes
 
@@ -18,22 +17,73 @@ def guardarDatoPaciente(persona): # creamos la función guardarDatoPaciente para
     mensaje = "Paciente Registrado Exitosamente"
     messagebox.showinfo(titulo, mensaje) # ventana emergente para indicar proceso completado
 
-def eliminarPaciente(idPersona): #creamos la funcion eliminarPaciente para eliminar sus datos
-    conexion = ConexionDB() # hacemos uso de la clase conexionDB para poder eliminar los datos
-    sql = f"""UPDATE Persona SET activo = 0 WHERE idPersona = {idPersona}"""
+#::::::::::::::::::::::: ELIMINAR PACIENTE :::::::::::::::::::::::::::::::::::::::
+
+def eliminarPaciente(idPersona):
+    conexion = ConexionDB()
+    sql = f"""UPDATE DatosPaciente SET activo = 0 WHERE idPersona = {idPersona}"""
     try:
         conexion.cursor.execute(sql)
         conexion.cerrarConexion()
-        title = 'Eliminar Paciente'
-        mensaje = 'Paciente eliminado exitosamente'
-        messagebox.showinfo(title, mensaje) # ventana emergente para indicar proceso completado
+        titulo = "Eliminar Paciente"
+        mensaje = "Paciente eliminado exitosamente"
+        messagebox.showinfo(titulo,mensaje)
     except:
-        title = 'Eliminar Paciente'
-        mensaje = 'Error al eliminar Paciente'
-        messagebox.showwarning(title, mensaje) # ventana emergente para indicar proceso completado    
+        titulo = "Eliminar Paciente"
+        mensaje = "Error al eliminar Paciente"
+        messagebox.showwarning(titulo, mensaje)
 
+#:::::::::::::::::::::::::::::: EDITAR PACIENTE ::::::::::::::::::::::::::::::::::::::
 
+def editarDatoPaciente(persona, idPersona):
+    conexion = ConexionDB()
+    sql = f"""UPDATE DatosPaciente SET NombreCompleto = "{persona.NombreCompleto}", ApellidosCompletos = "{persona.ApellidosCompletos}",
+            DNI = "{persona.DNI}", FechaNacimiento = "{persona.FechaNacimiento}", Edad = "{persona.Edad}", 
+            NumeroTelefonico = "{persona.NumeroTelefonico}", CorreoElectronico = "{persona.CorreoElectronico}",
+            activo = 1 WHERE idPersona = {idPersona}"""
+    try:
+        conexion.cursor.execute(sql)
+        conexion.cerrarConexion()
+        titulo = "Editar Paciente"
+        mensaje = "Paciente Editado Exitosamente"
+        messagebox.showinfo(titulo, mensaje)
+    except:
+        titulo = "Editar Paciente"
+        mensaje = "Error al editar paciente"
+        messagebox.showinfo(titulo, mensaje)
 
+#::::::::::::::::::::::::: TABLA EN LA GUI :::::::::::::::::::::::::::::::::::::
+
+def listar(): # funcion que manda los datos a la lista 
+    conexion = ConexionDB()
+
+    ListaDatosPaciente = [] # lista vacía donde se guardaran los datos para mostrarlos
+    sql = "SELECT * FROM DatosPaciente WHERE activo = 1" # where es la condición para que solo se muestren los pacientes activos
+
+    try:
+        conexion.cursor.execute(sql)
+        ListaDatosPaciente = conexion.cursor.fetchall() # añade todos los datos a la lista
+        conexion.cerrarConexion()
+    except:
+        title = "Datos"
+        mensaje = "Registros no existen"
+        messagebox.showwarning(title, mensaje)
+    return ListaDatosPaciente    
+
+def listarCondicion(where): # función que manda los datos de la lista a la tabla en la GUI si se cumple el where
+    conexion = ConexionDB()
+    listaDatosPaciente = []
+    sql = f"SELECT * FROM DatosPaciente {where}"
+
+    try:
+        conexion.cursor.execute(sql)
+        listaDatosPaciente = conexion.cursor.fetchall()
+        conexion.cerrarConexion()
+    except:
+        title = "Datos"
+        mensaje = "Registros no existen"
+        messagebox.showwarning(title, mensaje)
+    return listaDatosPaciente
 
 ################### CLASE DatosPaciente ################################3
 
