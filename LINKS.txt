@@ -20,3 +20,8 @@ https://www.educative.io/answers/what-is-super-in-python
 https://www.tutorialspoint.com/how-to-disable-enable-a-button-in-tkinter#:~:text=Tkinter%20Button%20widgets%20can%20be,and%20disabling%20the%20button%2C%20respectively.
 https://www.jcchouinard.com/python-if-name-equals-main/#:~:text=When%20you%20start%20working%20with,What%20does%20it%20mean%3F&text=What%20this%20function%20do%20is,the%20module%20from%20another%20one.
 https://docs.python.org/3/library/tkinter.messagebox.html
+https://docs.python.org/es/3/library/tkinter.ttk.html
+https://recursospython.com/guias-y-manuales/posicionar-elementos-en-tkinter/
+https://www.delftstack.com/es/tutorial/tkinter-tutorial/tkinter-entry/#:~:text=insert()%20M%C3%A9todo%20para%20establecer,el%20texto%20al%20widget%20Entry%20.
+https://www.youtube.com/watch?v=b9MMbcwSylI&ab_channel=Errodringer
+https://www.youtube.com/watch?v=Yvs7YFmKwuE&list=PLh7JzoyIyU4LKz9h3KC7VNrKPdkm0o8N4&index=20&ab_channel=ManuelGonz%C3%A1lez
