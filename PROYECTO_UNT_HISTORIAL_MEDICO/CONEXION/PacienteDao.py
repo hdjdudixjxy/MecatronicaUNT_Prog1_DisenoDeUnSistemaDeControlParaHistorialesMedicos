@@ -19,7 +19,7 @@ def guardarDatoPaciente(persona): # creamos la función guardarDatoPaciente para
 
 #::::::::::::::::::::::: ELIMINAR PACIENTE :::::::::::::::::::::::::::::::::::::::
 
-def eliminarPaciente(idPersona):
+def eliminarPaciente(idPersona): # creamos la función eliminarPaciente para no eliminar sus adtos de la base de datos, sino solo volverlo inactivo
     conexion = ConexionDB()
     sql = f"""UPDATE DatosPaciente SET activo = 0 WHERE idPersona = {idPersona}"""
     try:
@@ -35,7 +35,7 @@ def eliminarPaciente(idPersona):
 
 #:::::::::::::::::::::::::::::: EDITAR PACIENTE ::::::::::::::::::::::::::::::::::::::
 
-def editarDatoPaciente(persona, idPersona):
+def editarDatoPaciente(persona, idPersona): # creamos la función editarDatoPaciente para sobre escribir en cada objeto persona de la clase DatosPaciente
     conexion = ConexionDB()
     sql = f"""UPDATE DatosPaciente SET NombreCompleto = "{persona.NombreCompleto}", ApellidosCompletos = "{persona.ApellidosCompletos}",
             DNI = "{persona.DNI}", FechaNacimiento = "{persona.FechaNacimiento}", Edad = "{persona.Edad}", 

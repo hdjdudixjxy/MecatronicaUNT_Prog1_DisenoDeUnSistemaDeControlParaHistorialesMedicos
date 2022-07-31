@@ -128,7 +128,7 @@ class Frame(tk.Frame): # clase ventana
                                 bg="gold", cursor="hand2",activebackground="goldenrod")
         self.btnLimpiarBuscador.grid(column=4,row=1, padx=2, pady=5)
 
-    def buscarCondicion(self):
+    def buscarCondicion(self): # función para el entry buscar por dni
 
         if len(self.svBuscarDni.get()) > 0:
             where = "WHERE 1=1" # manda todos los valores de la base de datos
@@ -187,7 +187,7 @@ class Frame(tk.Frame): # clase ventana
         self.btnCancelar.config(state="normal")
         self.btnGuardar.config(state="normal")        
         
-    def tablaPaciente(self, where=""): #funcion para tabla en la GUI
+    def tablaPaciente(self, where=""): #funcion para insertar la tabla en la GUI
 
         if len(where) > 0:
             self.listaDatosPaciente = listarCondicion(where)
@@ -259,7 +259,7 @@ class Frame(tk.Frame): # clase ventana
         self.deshabilitar() # una vez presionado el boton duardar, se va a borrar todos los datos de los entrys
         self.tablaPaciente() # para actualizar la tabla cuando se ingresan datos
     
-    def editarPaciente(self):
+    def editarPaciente(self): # funcion que cambia los datos, pero en la tabla de la GUI
         try:
             self.idPersona = self.tabla.item(self.tabla.selection())["text"] #Trae el ID
             self.NombrePaciente = self.tabla.item(self.tabla.selection())["values"][0] # agrega los datos de el objeto ya insertado a uno nuevo, para poder editarlo
@@ -285,7 +285,7 @@ class Frame(tk.Frame): # clase ventana
             mensaje = "Error al editar paciente"
             messagebox.showerror(title, mensaje)  
 
-    def eliminarDatoPaciente(self):
+    def eliminarDatoPaciente(self): 
         try:
             self.idPersona = self.tabla.item(self.tabla.selection())["text"]
             eliminarPaciente(self.idPersona)
