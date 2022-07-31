@@ -121,12 +121,7 @@ class Frame(tk.Frame): # clase ventana
         self.btnBuscarCondicion = tk.Button(self, text="BUSCAR", command=self.buscarCondicion)
         self.btnBuscarCondicion.config(width=10, font=("verdana",12,"bold"), 
                                 bg="purple1", cursor="hand2",activebackground="purple3")
-        self.btnBuscarCondicion.grid(column=3,row=1, padx=2, pady=5)
-
-        self.btnLimpiarBuscador = tk.Button(self, text="LIMPIAR")
-        self.btnLimpiarBuscador.config(width=10, font=("verdana",12,"bold"), 
-                                bg="gold", cursor="hand2",activebackground="goldenrod")
-        self.btnLimpiarBuscador.grid(column=4,row=1, padx=2, pady=5)
+        self.btnBuscarCondicion.grid(column=4,row=1, padx=2, pady=5)
 
     def buscarCondicion(self): # función para el entry buscar por dni
 
